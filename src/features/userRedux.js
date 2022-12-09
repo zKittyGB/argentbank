@@ -6,12 +6,13 @@ const initialState = {
     data:null,
     error:null,
 };
-
+//action creator
 export const fetching = createAction('users/fetching');
 export const resolved = createAction('users/resolved');
 export const rejected = createAction('users/rejected');
 
-export async function fetchOrUpdateUser(store) {
+/** function that create the fetch protocole */
+export async function fetchOrUpdateUser(store, loggin, password) {
     const status = selectUser(store.getState()).status
     if (status === 'pending' || status === 'updating') {
       return
@@ -23,17 +24,15 @@ export async function fetchOrUpdateUser(store) {
           'Content-Type': 'application/json'
         },
         body:JSON.stringify({
-            email: 'steve@rogers.com',
-            password: 'password456'
+            email: `${loggin}`,
+            password: `${password}`
           })
-        // headers: { Authorization: `Bearer ${token}`}
     };
     store.dispatch(fetching())
     try {
       const response = await fetch('http://localhost:3001/api/v1/user/login', requestOptions)
       console.log(response)
       const data = await response.json()
-      console.log(data)
       store.dispatch(resolved(data))
     } catch (error) {
       store.dispatch(rejected(error))

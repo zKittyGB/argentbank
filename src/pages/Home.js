@@ -8,6 +8,7 @@ import Footer from "../components/footer/Footer"
 /** function that create the complete home page */
 function Home(){
 
+
     return(
         <div>
             <MenuTop/>
