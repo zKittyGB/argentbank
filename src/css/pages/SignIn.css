@@ -1,0 +1,8 @@
+.bg-dark {
+    background-color: #12002b;
+  }
+
+  .main {
+    min-height: 540px;
+    flex: 1;
+  }
