@@ -1,7 +1,11 @@
 import "../../css/signin/BodySignIn.css"
-import { fetchOrUpdateUser } from '../../features/userRedux'
+import { fetchOrUpdateUser } from '../../features/loginRedux'
 import { useEffect, useState } from 'react'
 import { useStore, useSelector } from 'react-redux'
+import React from 'react';
+import { Navigate } from "react-router-dom";
+
+
 /** function that create the body signIn area */
 function BodySignIn(){
     //get value from the inputs
@@ -13,18 +17,23 @@ function BodySignIn(){
         setLoggin(document.getElementById("loggin").value);
         setPassword(document.getElementById("password").value);
     }
+
+   
     //Call the fetch protocol if store's / loggin's or password's value change
     const store = useStore();
     useEffect(() => {
         fetchOrUpdateUser(store, loggin,password)
     }, [store, loggin, password])
     //check if fetch status is resolved
-    const requestStatus = useSelector((state)=> state.user)
-    if(requestStatus.status ==="resolved"){
+    const requestStatus = useSelector((state)=> state).user.login
+    console.log("p",requestStatus)
+
+    if(requestStatus.status ==="resolved" || requestStatus.status ==="updating" ){
+        console.log("pez")
         //check if authentification is ok
         if(requestStatus.data.status === 200){
-            //redirect to the profil page       
-            document.location.href="http://localhost:3000"; 
+            //redirect to the profil page      
+            return <Navigate replace to="/user" />;
         }
     }
     return(
