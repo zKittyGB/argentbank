@@ -4,14 +4,31 @@
     align-items: center;
     font-weight: bold;
     color: #2c3e50;
-}
-  
-.menu-top-signIn {
-    text-decoration: none;
     margin-right: 0.5rem;
 }
 
+.menu-top-signIn * {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #2c3e50;
+} 
+
+
 .menu-top-signIn p{
     margin-left: 5px;
+    text-decoration: none;
 }
   
+.menu-top-signIn p:hover{
+    text-decoration: underline;
+}
+.menu-top-name {
+    margin-right:10px;
+}
+
+
+:link{
+    text-decoration: none;
+}
+

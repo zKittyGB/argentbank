@@ -1,3 +1,4 @@
-export const user = (state) => state.user
+export const login = (state) => state.login
+export const profil = (state) => state.profil
+export const state = (state) => state
 
-export const requestStatus = (state)=> state.user.login

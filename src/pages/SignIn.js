@@ -6,7 +6,7 @@ import Footer from "../components/footer/Footer"
 /** function that create the complete home page */
 function SignIn(){
     return(
-        <div>
+        <div className="body-signIn">
             <MenuTop/>
             <BodySignIn/>
             <Footer/>

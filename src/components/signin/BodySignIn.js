@@ -1,7 +1,7 @@
 import "../../css/signin/BodySignIn.css"
-import { fetchOrUpdateUser } from '../../features/loginRedux'
-import { useEffect, useState } from 'react'
-import { useStore, useSelector } from 'react-redux'
+import { fetchLogin } from '../services/loginFetch'
+import { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import React from 'react';
 import { Navigate } from "react-router-dom";
 
@@ -11,25 +11,17 @@ function BodySignIn(){
     //get value from the inputs
     const [loggin, setLoggin] = useState('');
     const [password, setPassword] = useState('');
+    const dispatch = useDispatch();
+
     /** function that put the input value in loggin and password state */
     function HandleClick(event){
         event.preventDefault()
-        setLoggin(document.getElementById("loggin").value);
-        setPassword(document.getElementById("password").value);
+        dispatch(fetchLogin(loggin,password))
     }
 
-   
-    //Call the fetch protocol if store's / loggin's or password's value change
-    const store = useStore();
-    useEffect(() => {
-        fetchOrUpdateUser(store, loggin,password)
-    }, [store, loggin, password])
     //check if fetch status is resolved
-    const requestStatus = useSelector((state)=> state).user.login
-    console.log("p",requestStatus)
-
+    const requestStatus = useSelector((state)=> state.login.fetch)
     if(requestStatus.status ==="resolved" || requestStatus.status ==="updating" ){
-        console.log("pez")
         //check if authentification is ok
         if(requestStatus.data.status === 200){
             //redirect to the profil page      
@@ -41,14 +33,14 @@ function BodySignIn(){
             <section className="sign-in-content">
                 <i className="fa fa-user-circle sign-in-icon"></i>
                 <h1>Sign In</h1>
-                    <form>
+                <form>
                     <div className="input-wrapper">
                         <label htmlFor="loggin">Username</label>
-                        <input type="text" id="loggin" />
+                        <input type="text" id="loggin" onKeyUp={(event) =>{setLoggin(document.getElementById("loggin").value); setPassword(document.getElementById("password").value)}}/>
                     </div>
                     <div className="input-wrapper">
                         <label htmlFor="password">Password</label>
-                        <input type="password" id="password" />
+                        <input type="password" id="password" onKeyUp={(event)=>{setLoggin(document.getElementById("loggin").value); setPassword(document.getElementById("password").value)}}/>
                     </div>
                     <div className="input-remember">
                         <input type="checkbox" id="remember-me" /><label htmlFor="remember-me">Remember me</label>
