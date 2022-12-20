@@ -1,18 +1,22 @@
 import "../../css/user/BodyUser.css"
 import React from "react"
 import { fetchProfil } from '../services/profilFetch'
+import { fetchUpdateProfil } from '../services/updateProfilFetch'
 import { useEffect,useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { state } from "../../utils/selectors"
 /** function that create the body area */
 function BodyUser(){
     const [editProfil, setEditProfil] = useState(false)
+    const [newFirstName, setnewFirstName] = useState('');
+    const [newLastName, setnewLastName] = useState('');
+    const firstName = useSelector((state)=> state.profil.user.firstName)
+    const lastName = useSelector((state)=> state.profil.user.lastName)
     const dispatch = useDispatch();
+    //call the fetch profil function
     useEffect(() => {
         dispatch(fetchProfil())
     }, [dispatch])
-    const firstName = useSelector((state)=> state.profil.user.firstName)
-    const lastName = useSelector((state)=> state.profil.user.lastName)
+
     return(
         <main className="main bg-dark">
             <div className="header-profil">
@@ -24,15 +28,15 @@ function BodyUser(){
                         <div className="editProfil-inputs">
                             <div className="editProfil-inputs-firstName">
                                 <label htmlFor="firstName"/>
-                                <input type="text" id="firstName" placeholder={firstName} />
+                                <input type="text" id="firstName" placeholder={firstName} onKeyUp={(event) =>{setnewFirstName(document.getElementById("firstName").value); setnewLastName(document.getElementById("lastName").value)}}/>
                             </div>
                             <div className="input-editProfil">
                                 <label htmlFor="lastName"/>
-                                <input type="text" id="lastName" placeholder={lastName} />
+                                <input type="text" id="lastName" placeholder={lastName}  onKeyUp={(event) =>{setnewFirstName(document.getElementById("firstName").value); setnewLastName(document.getElementById("lastName").value)}}/>
                             </div>
                         </div>
                         <div className="apply-buttons">
-                            <button className="endForm-button"onClick={()=>setEditProfil(false)}>Save</button>
+                            <button className="endForm-button"onClick={()=>{dispatch(fetchUpdateProfil(newFirstName,newLastName));setEditProfil(false); dispatch(fetchProfil())}}>Save</button>
                             <button className="endForm-button"onClick={()=>setEditProfil(false)}>Cancel</button>
                         </div>
                     </div>

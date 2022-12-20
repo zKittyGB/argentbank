@@ -1,17 +1,16 @@
 import {  createSlice  } from '@reduxjs/toolkit'
 
-const loginSlice = createSlice({
-    name:'loginFetch',
+const updateProfilSlice = createSlice({
+    name:'updateProfil',
     initialState:{
         fetch:{
             status:'void',
             data:null,
             error:null,  
-        },
-        token:null,
+        }
     },
     reducers:{
-        fetchingLogin: {
+        fetchingupdateProfil: {
             reducer:(draft, action) => {
                 if (draft.fetch.status ==='void'){
                     draft.fetch.status ='pending'
@@ -29,20 +28,17 @@ const loginSlice = createSlice({
                 return
             }
         },
-        resolvedLogin: {
+        resolvedupdateProfil: {
             reducer:(draft, action)=>{
                 if (draft.fetch.status === 'pending' || draft.fetch.status === 'updating'){
                     draft.fetch.data = action.payload
-                    if(draft.fetch.data.status === 200){
-                        draft.token = action.payload.body.token
-                    }
                     draft.fetch.status = 'resolved'
                     return
                 }
                 return
             }
         },
-        rejectedLogin: {
+        rejectedupdateProfil: {
             reducer:(draft, action)=>{
                 if (draft.fetch.status === 'pending' || draft.fetch.status ==='updating'){
                     draft.fetch.error = action.payload
@@ -52,14 +48,9 @@ const loginSlice = createSlice({
                 return
             }
         },
-        logout: {
-            reducer:(draft, action)=>{
-                draft.token = null
-            }
-        }
     }
 })
 
-const { actions, reducer } = loginSlice
-export const {fetchingLogin, resolvedLogin, rejectedLogin, logout } = actions
+const { actions, reducer } = updateProfilSlice
+export const {fetchingupdateProfil, resolvedupdateProfil, rejectedupdateProfil } = actions
 export default reducer

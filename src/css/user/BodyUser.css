@@ -45,13 +45,13 @@
   .header-profil-name {
     color:#fff;
     margin-top: 0;
-    margin-bottom: 0;
+    margin-bottom: 20px;
   }
   .edit-button {
     border-color: #00bc77;
     background-color: #00bc77;
     color: #fff;
-    margin-bottom:20px;
+    margin-bottom:30px;
     font-weight: bold;
     padding: 10px;
   }
@@ -90,17 +90,14 @@
 }
 
 .editProfil-inputs {
+  width:365px;
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   text-align: left;
   margin-bottom: 0rem;
-}
-
-.editProfil-inputs-firstName {
-  margin-right:20px;
 }
 
 #firstName{
@@ -118,19 +115,26 @@
 }
 
 .apply-buttons{
-  width:13%;
+  width: 260px;
+  margin-top: 0px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  text-align: left;
+  margin-bottom: 0rem;
 }
 
 .endForm-button {
-  min-width: 105px;
+  min-width: 125px;
+  height: 35px;
   padding: 8px;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
   margin-top: 1rem;
-  margin-bottom:1rem;
-  border-color:#6458b4;
+  margin-bottom:2rem;
+  border-radius: 4px;
+  border-color:#6458F5;
   border:1px solid;
-  color:#6458b4;
+  color:#6458F5;
 }
