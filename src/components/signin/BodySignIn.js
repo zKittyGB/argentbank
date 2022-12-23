@@ -12,10 +12,13 @@ export default function BodySignIn(){
     const dispatch = useDispatch();
     const requestStatus = useSelector((state)=> state.login.fetch)
     const token = useSelector((state)=> state.login.token)
-    /** function that put the input value in loggin and password state */
+    /** function that start the fetch protocol */
     function HandleClick(event){
         event.preventDefault()
-        dispatch(fetchLogin(loggin,password))    
+        //start fetch if input != null
+        if(loggin && password){
+            dispatch(fetchLogin(loggin,password))    
+        }
     }
     //check if fetch status is resolved
     if(requestStatus.status ==="resolved" || requestStatus.status ==="updating" ){
