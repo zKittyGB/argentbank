@@ -1,5 +1,5 @@
 import {  createSlice  } from '@reduxjs/toolkit'
-
+//slice for the login action / reducer 
 const loginSlice = createSlice({
     name:'loginFetch',
     initialState:{
@@ -11,6 +11,7 @@ const loginSlice = createSlice({
         token:null,
     },
     reducers:{
+        //fetching state reducer
         fetchingLogin: {
             reducer:(draft, action) => {
                 if (draft.fetch.status ==='void'){
@@ -29,6 +30,7 @@ const loginSlice = createSlice({
                 return
             }
         },
+        //resolved state reducer
         resolvedLogin: {
             reducer:(draft, action)=>{
                 if (draft.fetch.status === 'pending' || draft.fetch.status === 'updating'){
@@ -42,6 +44,7 @@ const loginSlice = createSlice({
                 return
             }
         },
+        //rejected state reducer
         rejectedLogin: {
             reducer:(draft, action)=>{
                 if (draft.fetch.status === 'pending' || draft.fetch.status ==='updating'){
@@ -52,8 +55,10 @@ const loginSlice = createSlice({
                 return
             }
         },
+        //logout reducer
         logout: {
             reducer:(draft, action)=>{
+                //Token remover
                 draft.token = null
             }
         }

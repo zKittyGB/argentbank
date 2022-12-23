@@ -3,9 +3,10 @@ import IconChat from "../../assets/icon-chat.png"
 import IconMoney from "../../assets/icon-money.png"
 import IconSecurity from "../../assets/icon-security.png"
 /** function that create the body area */
-function BodyFeatures(){
+export default function BodyFeatures(){
     return(
         <div className="body-features">
+            {/* body section item */}
             <section className="body-features-section">
                 <h2 className="sr-only">Features</h2>
                 <div className="body-feature-section-item">
@@ -43,5 +44,3 @@ function BodyFeatures(){
         </div>
     )
 }
-
-export default BodyFeatures

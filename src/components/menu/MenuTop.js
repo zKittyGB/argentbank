@@ -2,7 +2,7 @@ import "../../css/menu/MenuTop.css"
 import Logo from "./Logo"
 import SignIn from "./SignIn"
 /** function that create the top menu area */
-function MenuTop(){
+export default function MenuTop(){
     return(
         <nav className="menuTop">
             <Logo/>
@@ -11,4 +11,3 @@ function MenuTop(){
     )
 }
 
-export default MenuTop

@@ -1,31 +1,30 @@
 import "../../css/menu/SignIn.css"
 import {Link} from 'react-router-dom'
-import { useSelector, useStore, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import React from 'react';
-// import { logout } from "../logout";
 import * as profilFetch from '../../features/loginSlice'
 
 /** function that create the logo area */
-function SignIn() {
-    const store = useStore();
+export default function SignIn() {
     const dispatch = useDispatch();
     const token = useSelector((state)=> state.login.token)
     const name = useSelector((state)=> state.profil.user.firstName)
-
+    /** function that logout the user */
     function logout(){
         dispatch(profilFetch.logout())
-    }
-    
+    }    
     return(
         <nav>
             {token != null
             ? <div className="menu-top-signIn">
-                <Link to='/user'> 
+                {/* profil are */}
+                <Link to='/profil'> 
                     <div className="menu-top-signin-profil">
                         <i className="fa fa-user-circle"></i>        
                         <p className="menu-top-name">{name}</p>
                     </div>
                 </Link>
+                {/* sign in area */}
                 <Link to ='/'>
                     <div className="menu-top-signin-logout" onClick={logout}>
                         <i className="fa fa-sign-out"></i>
@@ -33,7 +32,7 @@ function SignIn() {
                     </div>
                 </Link>
             </div>  
-            : <Link to='/signin'>
+            :<Link to='/signin'>{/* sign in area */}
                 <div className="menu-top-signIn">
                     <i className="fa fa-user-circle"></i>
                     <p>Sign In</p>
@@ -43,5 +42,3 @@ function SignIn() {
         </nav>
     )
 }
-
-export default SignIn

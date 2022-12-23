@@ -3,7 +3,7 @@ import logo from "../../assets/argentBankLogo.png"
 import {Link} from 'react-router-dom'
 
 /** function that create the logo area */
-function Logo() {
+export default function Logo() {
     return(
         <div className="menu-top-logoArea">
             <nav>
@@ -13,5 +13,3 @@ function Logo() {
         </div>
     )
 }
-
-export default Logo

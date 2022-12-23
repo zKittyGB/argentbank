@@ -1,12 +1,13 @@
 import {login} from '../../utils/selectors'
 import * as loginFetch from '../../features/loginSlice'
+import { fetchProfil } from '../services/profilFetch'
 
 /** function that create the fetch protocole */
 export function fetchLogin(loggin, password) {
     return async (dispatch, getState) =>{
         const status = login(getState()).fetch.status
         if (status === 'pending' || status === 'updating') {
-        return
+            return
         }
         const requestOptions = {
             method: 'POST',
@@ -24,6 +25,8 @@ export function fetchLogin(loggin, password) {
         const response = await fetch('http://localhost:3001/api/v1/user/login', requestOptions)
         const data = await response.json()
         dispatch(loginFetch.resolvedLogin(data))
+        dispatch(fetchProfil())
+
         } catch (error) {
         dispatch(loginFetch.rejectedLogin(error))
         }

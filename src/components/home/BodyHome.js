@@ -4,7 +4,7 @@ import BodyFeatures from "./BodyFeatures"
 import React from "react"
 
 /** function that create the body area */
-function Body(){
+export default function Body(){
     return(
         <div className="body">
             <BodyBanner/>  
@@ -12,5 +12,3 @@ function Body(){
         </div>
     )
 }
-
-export default Body
