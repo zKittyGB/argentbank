@@ -16,8 +16,8 @@ Project uses npm as package manager and NodeJs v.6.9.0.
 
 #4 - Install / start MongoDb
 
-#5 - Open API folder then install all dependencies required with npm install then launch it with npm run dev:server and let him start on "http://localhost:3000"
+#5 - follow the ReadMe instructions at : "https://github.com/zKittyGB/argentbank-api"
 
 #6 - Clone or Download the project APP
 
-#7 - Open App folder then install all dependencies required with npm install then launch it with npm strat and accept to start him on "http://localhost:3001"
+#7 - Open App folder then install all dependencies required with npm install then launch it with npm strat and accept to start him on localhost
